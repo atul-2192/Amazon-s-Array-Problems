@@ -1,0 +1,29 @@
+Given an array arr[] of size N where every element is in the range from 0 to n-1. 
+Rearrange the given array so that arr[i] becomes arr[arr[i]].
+
+New element become = (arr[arr[i]%n)*n;
+new element become the remainder part and we multiply the remainder to make count the new element.
+Example:
+new element =3;
+n=5;
+  so,
+  3%5=3;
+  and 3*5=15, thus when we need to calulate the new element then we just divide the new elemwnt by n.
+ 
+ To store the element we add the old element with new calculated value because all the element must be less than n;
+ so no elemnt can be summed up to new multiply of n.
+ so we just get that element by again remainder of stored element.
+ 
+ 
+ void arrange(long long arr[], int n) {
+        int i;
+     
+        for(i=0;i<n;i++){
+            arr[i]+=(arr[arr[i]]%n)*n;
+            cout<<arr[i]<<" ";
+        }
+
+        for(i=0;i<n;i++){
+            arr[i]=arr[i]/n;
+        }
+    }
