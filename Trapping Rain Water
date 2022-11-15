@@ -1,0 +1,27 @@
+Given an array arr[] of N non-negative integers representing the height of blocks. 
+If width of each block is 1,
+compute how much water can be trapped between the blocks during the rainy season. 
+
+
+ long long trappingWater(int arr[], int n){
+        long long ans=0;
+        stack<int>st;
+        
+    
+        for(int i=0;i<n;i++)
+        {
+           
+                while(st.size()>0&&arr[st.top()]<arr[i])
+                {
+                   int curr=st.top();
+                   st.pop();
+                   if(st.empty()) break;
+                   int dist=i-st.top()-1;
+                   int height=min(arr[st.top()],arr[i])-arr[curr];
+                   ans+=dist*height;
+                }
+           
+            st.push(i);
+        }
+        return ans;
+    }
